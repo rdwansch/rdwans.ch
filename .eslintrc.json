@@ -1,3 +1,46 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["next", "next/core-web-vitals", "plugin:react/recommended", "airbnb", "plugin:react/jsx-runtime"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-unresolved": "off", // dissable absolute path
+    "max-len": ["error", { "code": 150, "ignoreUrls": true }],
+    "arrow-parens": ["error", "as-needed"],
+    "no-console": "off", // console.log
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
+    "comma-dangle": "off",
+    "import/extensions": [
+      "off", // dissable absolute path
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }
