@@ -6,7 +6,7 @@ import 'styles/prism.css';
 // import { ThemeProvider } from 'next-themes';
 
 import Nav from '~/components/Nav';
-import Footer from './components/Footer';
+import Footer from '~/components/Footer';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

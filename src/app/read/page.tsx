@@ -1,6 +1,7 @@
 import { Preahvihear, Inter } from '@next/font/google';
 import Link from 'next/link';
 import { getAllFrontmatter } from '~/helper/markdown';
+import { Post } from '~/types/Post.type';
 
 const preahvihear = Preahvihear({ weight: '400' });
 const inter = Inter({});
@@ -8,7 +9,7 @@ const inter = Inter({});
 // 25
 
 export default async function page() {
-  const data = await getAllFrontmatter();
+  const posts: Post[] = await getAllFrontmatter();
 
   return (
     <section className="my-container mx-auto mt-10">
@@ -18,7 +19,7 @@ export default async function page() {
       </div>
 
       <article className="mt-7">
-        {data.map(
+        {posts.map(
           post =>
             !post.data.draft && (
               <div className="flex flex-col my-5 md:flex-row md:gap-10 lg:gap-28" key={post.data.title}>

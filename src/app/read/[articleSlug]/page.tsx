@@ -10,6 +10,12 @@ import Link from 'next/link';
 import readingTime from '~/helper/readingTime';
 import MDXRemoteWrapper from '~/components/MDXRemote';
 
+type Props = {
+  params: {
+    articleSlug: string;
+  };
+};
+
 const roboto = Roboto({ weight: '700' });
 
 export const dynamicParams = false; // fallback
@@ -22,13 +28,13 @@ export async function generateStaticParams(): Promise<{ articleSlug: string }[]>
   return params;
 }
 
-async function getAllMatter({ articleSlug }: string) {
+async function getAllMatter({ articleSlug }: { articleSlug: string }) {
   const { data, content } = await matter(fs.readFileSync(path.join('src/posts', `${articleSlug}.mdx`), 'utf-8'));
 
   const mdx = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypePrism, { ignoreMissing: true }],
+      rehypePlugins: [rehypePrism],
       // format: 'mdx',
     },
   });
@@ -37,8 +43,8 @@ async function getAllMatter({ articleSlug }: string) {
   return { data, articleSlug, readingTime: readingTime(content), source: mdx };
 }
 
-export default async function page({ params }: { articleSlug: string }) {
-  const res = await getAllMatter(params);
+export default async function page(props: Props) {
+  const res = await getAllMatter(props.params);
 
   return (
     <div className="article-container mt-10">

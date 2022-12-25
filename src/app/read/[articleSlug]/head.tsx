@@ -1,8 +1,9 @@
 import { getAllFrontmatter } from '~/helper/markdown';
+import { Post } from '~/types/Post.type';
 
 export default function head({ params: { articleSlug } }: { params: { articleSlug: string } }) {
-  const frontMatter = getAllFrontmatter();
-  const post = frontMatter.filter(fm => fm.slug === articleSlug)[0];
+  const frontMatter: Post[] = getAllFrontmatter();
+  const post: Post = frontMatter.filter(fm => fm.slug === articleSlug)[0];
 
   return (
     <>
