@@ -3,14 +3,14 @@
 /* eslint-disable max-len */
 
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote';
-import * as Img from 'next/image';
-import * as Alert from '~/components/MarkdownAlert';
+import Image, { ImageProps } from 'next/image';
+// import * as Alert from '~/components/MarkdownAlert';
 
-function Image(props) {
-  return <Img {...props} />;
+function Img(props: ImageProps) {
+  return <Image {...props} />;
 }
 
-const componetns = { Image, Alert };
+const componetns = { Image: Img };
 
 export default function MDXRemoteWrapper(props: MDXRemoteProps) {
   return (
