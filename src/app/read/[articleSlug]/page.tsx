@@ -17,33 +17,10 @@ type Props = {
 };
 
 const roboto = Roboto({ weight: '700' });
-
 export const dynamicParams = false; // fallback
 
-export async function generateStaticParams(): Promise<{ articleSlug: string }[]> {
-  const files = fs.readdirSync(path.join('src/posts'));
-
-  const params = files.map(file => ({ articleSlug: file.split('.')[0] }));
-
-  return params;
-}
-
-async function getAllMatter({ articleSlug }: { articleSlug: string }) {
-  const { data, content } = await matter(fs.readFileSync(path.join('src/posts', `${articleSlug}.mdx`), 'utf-8'));
-
-  const mdx = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypePrism],
-      // format: 'mdx',
-    },
-  });
-
-  // eslint-disable-next-line object-curly-newline
-  return { data, articleSlug, readingTime: readingTime(content), source: mdx };
-}
-
 export default async function page(props: Props) {
+  // eslint-disable-next-line no-use-before-define
   const res = await getAllMatter(props.params);
 
   return (
@@ -96,6 +73,7 @@ export default async function page(props: Props) {
         >
           <Link
             href={`https://github.com/ujklm23/personal-site/blob/main/src/posts/${res.articleSlug}.mdx`}
+            target="_blank"
             className="text-violet-700 dark:text-violet-400 dark:hover:text-violet-300 hover:text-violet-800 font-normal text-lg"
           >
             Edit this post
@@ -104,4 +82,24 @@ export default async function page(props: Props) {
       </div>
     </div>
   );
+}
+
+export async function generateStaticParams(): Promise<{ articleSlug: string }[]> {
+  const files = fs.readdirSync(path.join('src/posts'));
+  const params = files.map(file => ({ articleSlug: file.split('.')[0] }));
+  return params;
+}
+
+async function getAllMatter({ articleSlug }: { articleSlug: string }) {
+  const { data, content } = await matter(fs.readFileSync(path.join('src/posts', `${articleSlug}.mdx`), 'utf-8'));
+  const mdx = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypePrism],
+      // format: 'mdx',
+    },
+  });
+
+  // eslint-disable-next-line object-curly-newline
+  return { data, articleSlug, readingTime: readingTime(content), source: mdx };
 }

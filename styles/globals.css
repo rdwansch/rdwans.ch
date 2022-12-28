@@ -14,3 +14,7 @@ pre[class*='language-'] {
   position: relative;
   @apply lg:w-[800px] md:w-[100%];
 }
+
+pre code {
+  border: none;
+}

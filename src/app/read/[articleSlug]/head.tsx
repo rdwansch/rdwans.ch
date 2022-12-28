@@ -7,6 +7,11 @@ export default function head({ params: { articleSlug } }: { params: { articleSlu
 
   return (
     <>
+      <meta charSet="UTF-8" />
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="/icon.png" type="image/x-icon" />
+
       <title>{`${post.data.title} | R. Siddiq`}</title>
       <meta name="title" content={`${post.data.title} | R. Siddiq`} />
       <meta name="description" content={post.data.excerpt} />
@@ -22,6 +27,9 @@ export default function head({ params: { articleSlug } }: { params: { articleSlu
       <meta property="twitter:url" content="http://localhost" />
       <meta property="twitter:title" content={`${post.data.title} | R. Siddiq`} />
       <meta property="twitter:description" content={post.data.excerpt} />
+
+      {/* Development */}
+      {/* <meta httpEquiv="refresh" content="1" /> */}
     </>
   );
 }

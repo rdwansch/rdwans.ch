@@ -1,0 +1,204 @@
+---
+title: NextJS 13
+publishedAt: '26 December 2022'
+draft: false
+excerpt: Beberapa Update tentang NextJS versi 13
+tags: [NextJS]
+---
+
+<Image src="/images/nextjs-13.png" width={900} height={400} />
+
+> Dynamic without limit
+
+[Vercel](https://vercel.com) telah merilis NextJS versi 13 pada saat konferensi [Next.js Conf](https://nextjs.org/conf) di San Francisco, 25 Oktober 2022. Beberapa update yang menarik diantaranya `app` directory, perubahan `data fetching`, `server` dan `client` components, serta hal lainnya. Namun NextJS versi 12 masih bisa digunakan dan setidaknya kita tidak perlu me-rewrite 10k+ baris code untuk sementara waktu.
+
+## Routing
+
+Untuk dokumentasi bisa dibaca di [Routing Fundamentals](https://beta.nextjs.org/docs/routing/fundamentals). Di NextJS 12 kita mendefinisikan _route_ di `pages` directory. Halaman `index.js` sudah menjadi `/` atau root. Jika ingin membuat route, contoh: `/about`; kita hanya perlu membuat file baru di `pages` dengan nama file `about.js` dan diisi dengan _components_ biasa.
+
+<Image src="/images/pages.png" alt="Pages directory" width={400} height={700} />
+
+NextJS 13, memperkenalkan `app` directory, struktur baru yang membuat _project_ lebih terorganisir. Alih-alih menggunakan `page`, route kita berada di `app` directory.
+
+<Image src="/images/app-dir.png" alt="App directory" width={400} height={700} />
+
+Saya akan menjelaskan fungsi ketiga file tersebut:
+
+- #### head.js
+
+  Seperti namanya, file ini digunakan untuk mendefinisikan tag `head` html. Kita bisa memasukkan cdn, title, favico, meta, dan lain-lain dengan _return_ harus react fragment `</>`. Isi file kurang lebih seperti ini.
+
+  ```js
+  export default function head() {
+    return (
+      <>
+        <meta charSet="UTF-8" />
+        <link rel="shortcut icon" href="/icon.png" type="image/x-icon" />
+        <title>Posts</title>
+      </>
+    );
+  }
+  ```
+
+- #### layout.js
+
+  Pada `app` directory, kita wajib membuat file `layout.js` sebagai root dari _react components_. Berisi tag html dan body sebagai tempat _components_ akan di-_mount_ nanti.
+
+  {/* prettier-ignore */}
+  ```js
+  export default function RootLayout({ children }) {
+    return (
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    );
+  }
+  ```
+
+- #### page.js
+
+  File yang berisi `jsx` atau _react component_. Jika kita punya halaman _landing page_ atau _about page_ maka di sini-lah tempat kita menuliskan `html`.
+
+  ```js
+  export default function page() {
+    return (
+      <div>
+        <h1>Hello World</h1>
+      </div>
+    );
+  }
+  ```
+
+Bagaimana dengan _nested route_? mari lihat perbandingan `pages` dan `app` dengan studi kasus kita membuat route `/products/{id}`. \{id\} karena akan berisi id yang berbeda tiap produk.
+
+NextJS 12:
+
+```js
+// 12
+pages
+├── index.js
+└── products
+    └── [id].js
+```
+
+NextJS 13:
+
+```js
+// 13
+app
+├── head.js
+├── layout.js
+├── page.js
+└── products
+    └── [id]
+        └── page.js
+```
+
+Ada beberapa keuntungan `app` seperti kita bisa melakukan _Loading UI_ `loading.js` dan _Error Handling_ `error.js`. Selengkapnya bisa dibaca di [Routing Fundamentals](https://beta.nextjs.org/docs/routing/fundamentals).
+
+## Data Fetching
+
+`fetching data` di NextJS 13 sangat sederhana kita hanya perlu membuat `function` lalu memanggilnya langsung seperti _native_. Namun, sebelumnya kita perlu paham tentang [`client` dan `server` components](https://beta.nextjs.org/docs/rendering/fundamentals).
+
+{/* prettier-ignore */}
+```js
+async function fetchData() {
+  const options = {
+    cache: 'force-cache', // default
+          // 'no-store'
+  }
+
+  const res = await fetch('https://...', options);
+  return res.json();
+}
+
+async function page() {
+  const data = await fetchData();
+  return (
+    {/*processing data*/}
+  )
+}
+```
+
+- `force-chace` hanya akan dijalankan ketika di-_build_ atau mekanisme ini
+  mirip seperti `getStaticProps`.
+- `no-store` dijalankan setiap _request_.
+  mirip seperti `getServerSideProps`.
+
+ada 1 lagi, yaitu:
+
+- `revalidate`. Kombinasi `SSG` dan `SSR`, ketika kita ingin `fetch` saat _build_ dan pada kondisi tertentu halaman akan re `fetch` pada proses request `SSR`, bukan di client `CSR`.
+
+  ```js
+  const options = {
+    next: { revalidate: 10 }, // pada SSR akan refetch setiap 10 detik
+  };
+  ```
+
+Dikarenakan `page.js` adalah `server` component by default, jadi kita bisa mengakses langsung database.
+
+{/* prettier-ignore */}
+```js
+export const revalidate = 3600; // jika ingin revalidate
+
+async function getAllUsers() {
+  const user: User[] = await primsa.user.findMany();
+  return user;
+}
+
+async function page() {
+  const users: User[] = await getAllUsers();
+
+  return (
+    {/*processing data*/}
+  )
+}
+
+```
+
+Jika kita mempunyai `dynamic` route dan ingin men-_generate_ HTML ketika di build, kita bisa menggunakan `generateStaticParams`. Di versi sebelumnya, proses ini mirip seperti `getStaticPaths`.
+
+```js
+// app/blog/[articleSlug]/page.js
+export default function Page({ params }) {
+  const { articleSlug } = params;
+
+  return ...
+}
+
+export async function generateStaticParams() {
+  const posts: Post[] = await getPosts();
+
+  const params  = posts.map((post) => ({
+    articleSlug: post.slug,
+  }));
+
+  return params
+}
+
+```
+
+## @next/font
+
+Font system baru NextJS memiliki banyak keuntungan, seperti optimasi, _remove external request_, _self hosting font_, dan yang lainnya. Fitur yang saya suka kita bisa menggunakan Google Fonts dengan performa dan privasi. _CSS_ dan _file font_ akan didownload ketika _build_. **No requests are sent to Google by the browser**.
+
+```js
+import { Roboto } from '@next/font/google';
+const roboto = Roboto({ weight: '700' });
+
+<h1 className={roboto.className}>
+```
+
+Atau jika kita ada _custom fonts_, NextJS sudah mensuport _self hosting_, _caching_, dan _preloading font files_.
+
+```js
+import localFont from '@next/font/local';
+
+const aksara = localFont({ src: './aksara.woff2' });
+
+<html className={aksara.className}>
+```
+
+Masih banyak lagi tentang update Next JS yang bisa dilihat langsung ke [Dokumentasi resmi](https://beta.nextjs.org) yang saat artikel ini ditulis masih _beta version_. Seluruh fitur di sini masih _beta_, jadi beberapa tidak direkomendasikan ke _production_. Fitur di versi sebelumnya masih bisa digunakan bersamaan dengan _experimental_ fitur terbaru.
+
+> Six years ago, we released Next.js to the public. We set out to build a zero-configuration React framework that simplifies your developer experience. Looking back, it's incredible to see how the community has grown, and what we've been able to ship together. Let's keep going.

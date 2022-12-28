@@ -37,7 +37,7 @@ export default function Nav() {
             </Link>
           </li>
           <li className="hidden sm:block">
-            <Link href="https://github.com/ujklm23" target="_blank">
+            <Link href="https://github.com/ujklm23" target="_blank" rel="noreferrer">
               Source
             </Link>
           </li>

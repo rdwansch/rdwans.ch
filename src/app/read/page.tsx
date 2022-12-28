@@ -36,8 +36,8 @@ export default async function page() {
                   <h1
                     className={
                       `${inter.className} text-xl -mt-5 text-gray-700 relative w-fit font-bold ` +
-                      "after:content[''] after:absolute after:w-0 after:transition-[width] after:h-[1.5px] after:bottom-0 after:left-1 " +
-                      'after:bg-gradient-to-r after:from-white after:to-gray-500 ' +
+                      "after:content[''] after:absolute after:w-0 after:h-[1.5px] after:bottom-0 after:left-1 " +
+                      'after:bg-gradient-to-r after:from-white after:to-gray-500 after:transition-[width]  ' +
                       'hover:after:w-full dark:text-gray-200 md:text-3xl'
                     }
                   >

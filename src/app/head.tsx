@@ -1,4 +1,4 @@
-export default function Head() {
+export default function head() {
   return (
     <>
       <meta charSet="UTF-8" />

@@ -1,8 +1,6 @@
-'use client';
-
 import Image from 'next/image';
 
-export default function page() {
+export default async function page() {
   return (
     <section className="my-container mx-auto mt-10 dark:text-gray-200">
       <div className="flex md:flex-row flex-col">
