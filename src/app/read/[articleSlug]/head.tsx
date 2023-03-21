@@ -12,20 +12,20 @@ export default function head({ params: { articleSlug } }: { params: { articleSlu
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="/icon.png" type="image/x-icon" />
 
-      <title>{`${post.data.title} | R. Siddiq`}</title>
-      <meta name="title" content={`${post.data.title} | R. Siddiq`} />
+      <title>{`${post.data.title} | Rdwansch`}</title>
+      <meta name="title" content={`${post.data.title} | Rdwansch`} />
       <meta name="description" content={post.data.excerpt} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="http://localhost" />
-      <meta property="og:title" content={`${post.data.title} | R. Siddiq`} />
+      <meta property="og:url" content="http://rdwans.ch" />
+      <meta property="og:title" content={`${post.data.title} | Rdwansch`} />
       <meta property="og:description" content={post.data.excerpt} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="http://localhost" />
-      <meta property="twitter:title" content={`${post.data.title} | R. Siddiq`} />
+      <meta property="twitter:url" content="http://rdwans.ch" />
+      <meta property="twitter:title" content={`${post.data.title} | Rdwansch`} />
       <meta property="twitter:description" content={post.data.excerpt} />
 
       {/* Development */}

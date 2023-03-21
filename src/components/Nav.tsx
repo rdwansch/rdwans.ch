@@ -31,19 +31,9 @@ export default function Nav() {
           <li className="hidden sm:block">
             <Link href="/read">Posts</Link>
           </li>
-          <li className="hidden sm:block">
-            <Link href="https://ridwan-rs.vercel.app" target="_blank" rel="noreferrer">
-              Me
-            </Link>
-          </li>
-          <li className="hidden sm:block">
-            <Link href="https://github.com/ujklm23" target="_blank" rel="noreferrer">
-              Source
-            </Link>
-          </li>
           <li className="flex items-center">
             <button type="button" onClick={() => setIsDark(prev => !prev)}>
-              {!isDark ? (
+              {isDark ? (
                 <svg className="h-5 w-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
