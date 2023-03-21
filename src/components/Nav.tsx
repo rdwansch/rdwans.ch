@@ -5,7 +5,7 @@ import { Roboto } from '@next/font/google';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const roboto = Roboto({ weight: '400' });
+const roboto = Roboto({ weight: '400', preload: false });
 
 export default function Nav() {
   const [isDark, setIsDark] = useState<Boolean>(true);

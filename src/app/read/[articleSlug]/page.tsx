@@ -16,7 +16,7 @@ type Props = {
   };
 };
 
-const roboto = Roboto({ weight: '700' });
+const roboto = Roboto({ weight: '700', preload: false });
 export const dynamicParams = false; // fallback
 
 export default async function page(props: Props) {

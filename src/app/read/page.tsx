@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { getAllFrontmatter } from '~/helper/markdown';
 import { Post } from '~/types/Post.type';
 
-const preahvihear = Preahvihear({ weight: '400' });
-const inter = Inter({});
+const preahvihear = Preahvihear({ weight: '400', preload: false });
+const inter = Inter({ preload: false });
 
 // 25
 
