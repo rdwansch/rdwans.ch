@@ -72,7 +72,7 @@ export default async function page(props: Props) {
           }
         >
           <Link
-            href={`https://github.com/ujklm23/personal-site/blob/main/src/posts/${res.articleSlug}.mdx`}
+            href={new URL(`https://github.com/rdwansch/rdwans.ch/blob/main/src/posts/${res.articleSlug}`)}
             target="_blank"
             className="text-violet-700 dark:text-violet-400 dark:hover:text-violet-300 hover:text-violet-800 font-normal text-lg"
           >
