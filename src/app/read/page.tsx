@@ -6,15 +6,13 @@ import { Post } from '~/types/Post.type';
 const preahvihear = Preahvihear({ weight: '400', preload: false });
 const inter = Inter({ preload: false });
 
-// 25
-
 export default async function page() {
   const posts: Post[] = await getAllFrontmatter();
 
   return (
     <section className="my-container mx-auto mt-10">
       <div>
-        <h1 className={`${preahvihear.className} dark:text-gray-300 text-4xl`}>Read My Post</h1>
+        <h1 className={`${preahvihear.className} text-black dark:text-gray-300 text-4xl`}>Read My Post</h1>
         <hr className="dark:border-gray-600 border-gray-300 mt-5" />
       </div>
 

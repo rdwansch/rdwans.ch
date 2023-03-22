@@ -97,6 +97,7 @@ async function getAllMatter({ articleSlug }: { articleSlug: string }) {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypePrism],
       // format: 'mdx',
+      development: false,
     },
   });
 
