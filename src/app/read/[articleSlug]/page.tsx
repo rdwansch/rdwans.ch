@@ -1,14 +1,11 @@
 import { Roboto } from '@next/font/google';
 import fs from 'fs';
-import matter from 'gray-matter';
 import path from 'path';
-import { serialize } from 'next-mdx-remote/serialize';
-import remarkGfm from 'remark-gfm';
-import rehypePrism from 'rehype-prism-plus';
 import Link from 'next/link';
 
-import readingTime from '~/helper/readingTime';
 import MDXRemoteWrapper from '~/components/MDXRemote';
+import { Metadata } from 'next';
+import { getSingleMatter } from '~/helper/markdown';
 
 type Props = {
   params: {
@@ -21,7 +18,7 @@ export const dynamicParams = false; // fallback
 
 export default async function page(props: Props) {
   // eslint-disable-next-line no-use-before-define
-  const res = await getAllMatter(props.params);
+  const res = await getSingleMatter(props.params);
 
   return (
     <div className="article-container mt-10">
@@ -62,45 +59,25 @@ export default async function page(props: Props) {
             Back to posts
           </Link>
         </button>
-
-        <button
-          type="button"
-          className={
-            'block mb-10 py-3 relative ' +
-            "after:content-[''] after:bottom-3 after:absolute after:left-0 after:right-0 after:w-0 after:h-1 " +
-            'after:hover:w-full after:transition-all after:bg-gradient-to-tr after:from-red-100 after:to-violet-900  after:hover:h-0.5'
-          }
-        >
-          <Link
-            href={new URL(`https://github.com/rdwansch/rdwans.ch/blob/main/src/posts/${res.articleSlug}`)}
-            target="_blank"
-            className="text-violet-700 dark:text-violet-400 dark:hover:text-violet-300 hover:text-violet-800 font-normal text-lg"
-          >
-            Edit this post
-          </Link>
-        </button>
       </div>
     </div>
   );
 }
 
+// Generate static file html
 export async function generateStaticParams(): Promise<{ articleSlug: string }[]> {
   const files = fs.readdirSync(path.join('src/posts'));
   const params = files.map(file => ({ articleSlug: file.split('.')[0] }));
   return params;
 }
 
-async function getAllMatter({ articleSlug }: { articleSlug: string }) {
-  const { data, content } = await matter(fs.readFileSync(path.join('src/posts', `${articleSlug}.mdx`), 'utf-8'));
-  const mdx = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypePrism],
-      // format: 'mdx',
-      development: false,
-    },
-  });
+// Generate meta data
+export async function generateMetadata({ params }: { articleSlug: string }): Promise<Metadata> {
+  const res = await getSingleMatter(params);
 
-  // eslint-disable-next-line object-curly-newline
-  return { data, articleSlug, readingTime: readingTime(content), source: mdx };
+  return {
+    title: res.data.title,
+    keywords: res.data.tags,
+    description: res.data.description,
+  };
 }

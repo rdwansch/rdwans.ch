@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 // import { useTheme } from 'next-themes';
 
@@ -8,6 +6,7 @@ import 'styles/prism.css';
 
 import Nav from '~/components/Nav';
 import Footer from '~/components/Footer';
+import { Metadata } from 'next';
 // import Provider from './Provider';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -28,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {/* {mounted ? ( */}
         {/* <Provider> */}
-        <div className="dark:bg-[#181818] h-[100vh] max-h-full transition-colors bg-gray-100">
+        <div className="dark:bg-[#1f2028] min-h-screen transition-colors bg-white">
           <Nav />
           {children}
           <Footer />
@@ -41,3 +40,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Rdwansch',
+    template: '%s | Rdwansch',
+  },
+  description: 'Rdwans.ch - baca artikel',
+  authors: { name: 'Ridhwan R. Siddiq', url: 'https://rdwans.ch' },
+  keywords: ['Next.js', 'React', 'JavaScript'],
+};
