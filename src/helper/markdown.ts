@@ -16,19 +16,20 @@ export const getAllFrontmatter = (): Post[] => {
   // Iterates of file
   const posts: Post[] = files.map(file => {
     // Extract to matter format
-    const source = matter(fs.readFileSync(path.join('src/posts', file), 'utf-8'));
+    const { data, content } = matter(fs.readFileSync(path.join('src/posts', file), 'utf-8'));
 
     return {
       slug: file.split('.')[0],
-      readingTime: readingTime(source.content),
+      readingTime: readingTime(content),
       data: {
-        title: source.data.title,
-        publishedAt: source.data.publishedAt,
-        draft: source.data.draft,
-        excerpt: source.data.excerpt,
-        tags: source.data.tags,
+        title: data.title,
+        publishedAt: data.publishedAt,
+        draft: data.draft,
+        excerpt: data.excerpt,
+        tags: data.tags,
       },
-      content: source.content,
+      source: { compiledSource: '' },
+      content,
     };
   });
 
@@ -53,9 +54,9 @@ export const getSingleMatter = async ({ articleSlug }: { articleSlug: string }):
 
   // Return formated post
   return {
-    data,
     readingTime: readingTime(content),
     source: mdx,
     slug: articleSlug,
+    data: data as Post['data'],
   };
 };

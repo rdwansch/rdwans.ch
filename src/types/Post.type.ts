@@ -8,5 +8,8 @@ export type Post = {
     excerpt: string;
     tags: string[];
   };
-  content: string;
+  content?: string;
+  source: {
+    compiledSource: string;
+  };
 };
