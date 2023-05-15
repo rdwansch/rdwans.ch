@@ -35,7 +35,7 @@ export default function Nav() {
           </li>
           <li className="flex items-center">
             <button type="button" onClick={() => setIsDark(prev => !prev)}>
-              {!isDark ? (
+              {isDark ? (
                 <svg className="h-5 w-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
