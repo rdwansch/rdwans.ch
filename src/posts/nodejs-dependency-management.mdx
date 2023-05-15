@@ -1,0 +1,192 @@
+---
+title: 'NodeJS: Dependency Management'
+publishedAt: '14 May 2023'
+draft: false
+excerpt: Belajar Dependency Management di NodeJS dengan NPM
+tags: [Node, JavaScript]
+---
+
+<Image src="/images/npm-hero-image.jpeg" width={900} height={400} alt="NPM" />
+
+Ketika belajar NodeJS mungkin kita akan menemukan file `package.json`. Terdapat informasi mengenai Project Node kita dalam file tersebut. Ayo kita pelajari.
+
+## Apa itu Package JSON
+
+Setiap Node Project pasti terdapat file yang ditulis dengan JSON(JavaScript Object Notation) untuk menyimpan informasi Node Package. `package.json` menyimpan _basic information_ seperti _name_, _version_, hingga _metadata_. NPM membutuhkan `package.json` untuk mengelola package.
+
+## Manifest
+
+Manifest berisi informasi mengenai mengenai yang ditulis kedalam _Object_, diantaranya yang sering digunakan:
+
+- name: Nama package.
+- version: Nomor versi mengarah pada [semver](https://docs.npmjs.com/about-semantic-versioning).
+- description: Informasi singkat mengenai package.
+- lisence: Lisensi package dengan format [SPDX (Software Package Data Exchange)](https://spdx.org/licenses/).
+- main: _entry point_ dari program kita.
+- script: Menjalankan _custom script_ kita dengan NPM.
+- dependencies: Berisi semua _dependency_ yang dibutuhkan. Akan kita bahas nanti.
+
+Untuk selengkapnya bisa kita kunjungi [Docs](https://docs.npmjs.com/cli/v9/configuring-npm/package-json).
+
+## Bagaimana membuat package.json
+
+Kita perlu menginisiasi dengan npm, perintahnya `$ npm init`. Jika menjalankan tersebut biasanya kita akan mendapat pertanyaan.
+
+```bash
+$ npm init
+
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+package name: (test)
+version: (1.0.0)
+description:
+entry point: (index.js)
+test command:
+git repository:
+keywords:
+author:
+license: (ISC)
+About to write to /home/lucuria/Documents/dev/test/package.json:
+
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+Is this OK? (yes)
+
+```
+
+Jika malas mengisi kita bisa menggunakan _default value_, hanya tekan enter saja setiap pertanyaan. Namun lebih mudahnya kita bisa menambahkan flag `-y` di perintah npm dan kita akan mendapatkan hasil yang sama.
+
+```bash
+$ npm init -y
+wrote to package.json:
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
+
+## Mengelola Dependency
+
+Setiap kali membuat program biasanya kita membutuhkan _third-party library_. Didalam Node JS, tersimpan pada NPM Registry.
+
+## Menginstall Package
+
+Untuk menginstall _package_ atau _dependency_ cukup mudah, hanya dengan mengetikkan `npm install`. Selesai menjalankannya akan muncul folder _node_module_.
+
+- Install package:
+
+  ```bash
+  $ npm install react
+  ```
+
+  Secara default npm akan menginstall _stable release_ yang terbaru di Registry. Sekarang jika dilihat file _package.json_, akan muncul _dependency_:
+
+  ```json
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  ```
+
+  Jika ingin meng-_install_ banyak package sekaligus hanya perlu menambahkan _package_ lagi di belakangnya dan jika ingin spesifik versi yang kita mau langsung saja ditulis versinya.
+
+  ```bash
+  $ npm install react@18.0.1
+  ```
+
+Ada variasi lain yang bisa digunakan, yaitu dengan menuliskan langsung _dependency_ yang diperlukan di _package.json_.
+
+```json
+{
+  "name": "personal-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/font": "^13.2.4",
+    "@tailwindcss/typography": "^0.5.8",
+    "@types/node": "18.11.17",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.9",
+    "eslint-config-next": "^13.2.4",
+    "gray-matter": "^4.0.3",
+    "next": "^13.2.4",
+    "next-mdx-remote": "^4.2.0",
+    "next-themes": "^0.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rehype-prism-plus": "^1.5.0",
+    "remark-gfm": "^3.0.1",
+    "remark-mdx-code-meta": "^2.0.0",
+    "typescript": "4.9.4"
+  }
+}
+```
+
+kemudian tinggal menjalankan perintah install, lalu npm akan meng-_install_ semua yang tertulis di _dependencies_.
+
+```bash
+$ npm install
+```
+
+## Mengelola Versi
+
+Versi didalam NodeJS terintegrasi dengan [Semver](https://semver.org/). Kita bisa dengan spesifik menuliskan apa yang kita mau kedalam _dependencies_ _package.json_. Jika bingung kita bisa gunakan [kalkulator Semver NPM](https://semver.npmjs.com/).
+
+<Image src="/images/npm-semver-calculator.png" width={900} height={400} alt="NPM Semver Calculator" />
+
+## Melihat Versi Dependency
+
+Mungkin kita bekerja pada _legacy project_ dan banyak sekali dependency yang harus di-_update_. Kita bisa dengan sederhana mengetikkan sebuah perintah yang secara otomatis menampilkan versi mengenai _dependency_.
+
+```bash
+$ npm outdated
+```
+
+<Image src="/images/npm-outdated.png" width={900} height={400} alt="NPM outdated" />
+
+Untuk meng-_update_ semua _dependency_ sesuai _Wanted version_ bisa dengan perintah:
+
+```bash
+$ npm update
+```
+
+Atau ingin hanya beberapa _dependency_:
+
+```bash
+$ npm update next
+```
+
+Sudah biasa bagi kita untuk berpindah-pindah versi dengan alasan tertentu. Melakukannya di NPM cukup mudah yaitu meng-_install_ dengan versi yang diinginkan. Seperti contoh kita ingin **downgrade** package:
+
+```bash
+$ npm install next@^12.0.0
+```
+
+Jika sebelumnya di _package.json_ kita terdapat _next_ dengan _latest_ _version_ akan otomatis _replace_ dengan versi yang kita inginkan
+
+Terimakasih sudah membaca!
+~ Ann
