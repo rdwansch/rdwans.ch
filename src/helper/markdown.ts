@@ -33,7 +33,7 @@ export const getAllFrontmatter = (): Post[] => {
         content,
       };
     })
-    .sort((a, b) => new Date(b.data.publishedAt) - new Date(a.data.publishedAt));
+    .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf());
 
   // Return formated posts
   return posts;
