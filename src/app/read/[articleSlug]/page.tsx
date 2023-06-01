@@ -19,7 +19,7 @@ export const dynamicParams = false; // fallback
 export default async function page(props: Props) {
   // eslint-disable-next-line no-use-before-define
   const res = await getSingleMatter(props.params);
-  console.log(res);
+  // console.log(res);
 
   return (
     <div className="article-container mt-10">
@@ -74,7 +74,7 @@ export async function generateStaticParams(): Promise<{ articleSlug: string }[]>
 
 // Generate meta data
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  console.log(props.params);
+  // console.log(props.params);
   const res = await getSingleMatter(props.params);
 
   return {

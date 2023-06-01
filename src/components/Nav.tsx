@@ -14,7 +14,7 @@ export default function Nav() {
 
   useEffect(() => {
     if (document.body.parentElement?.className === 'dark') {
-      setIsDark(true);
+      // setIsDark(true);
     }
   }, []);
 
@@ -24,10 +24,10 @@ export default function Nav() {
 
   return (
     <nav className="flex items-center dark:text-white justify-between my-container pt-5">
-      <div className="flex items-center">
+      <Link href="/" className="flex items-center">
         <Image src="/icon.png" width={75} height={50} alt="Next Me" />
         <h2 className={`${roboto.className}`}>My Site</h2>
-      </div>
+      </Link>
       <div className="">
         <ul className="flex gap-5 text-gray-800 dark:text-gray-300">
           <li className="hidden sm:block">

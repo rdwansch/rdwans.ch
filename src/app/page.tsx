@@ -1,9 +1,9 @@
 'use client';
 
-import { redirect } from 'next/navigation';
-
 export default function page() {
-  redirect('/read');
-
-  return <div />;
+  return (
+    <div className="my-container">
+      <h1>Hello</h1>
+    </div>
+  );
 }

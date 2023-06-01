@@ -46,6 +46,7 @@ export const metadata: Metadata = {
     default: 'Rdwansch',
     template: '%s | Rdwansch',
   },
+  icons: '/icon.png',
   description: 'Rdwans.ch - baca artikel',
   authors: { name: 'Ridhwan R. Siddiq', url: 'https://rdwans.ch' },
   keywords: ['Next.js', 'React', 'JavaScript'],
