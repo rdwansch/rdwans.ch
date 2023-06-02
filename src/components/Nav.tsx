@@ -1,12 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { Roboto } from '@next/font/google';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 // import { useTheme } from 'next-themes';
-
-const roboto = Roboto({ weight: '400', preload: false });
 
 export default function Nav() {
   const [isDark, setIsDark] = useState<Boolean>(true);
@@ -26,7 +23,7 @@ export default function Nav() {
     <nav className="flex items-center dark:text-white justify-between my-container pt-5">
       <Link href="/" className="flex items-center">
         <Image src="/icon.png" width={75} height={50} alt="Next Me" />
-        <h2 className={`${roboto.className}`}>My Site</h2>
+        <h2>My Site</h2>
       </Link>
       <div className="">
         <ul className="flex gap-5 text-gray-800 dark:text-gray-300">
@@ -35,7 +32,7 @@ export default function Nav() {
           </li>
           <li className="flex items-center">
             <button type="button" onClick={() => setIsDark(prev => !prev)}>
-              {isDark ? (
+              {!isDark ? (
                 <svg className="h-5 w-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"

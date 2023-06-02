@@ -50,7 +50,7 @@ export const getSingleMatter = async ({ articleSlug }: { articleSlug: string }):
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypePrism],
       // format: 'mdx',
-      development: false,
+      development: process.env.NODE_ENV !== 'production',
     },
   });
 

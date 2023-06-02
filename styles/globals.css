@@ -18,3 +18,7 @@ pre[class*='language-'] {
 pre code {
   border: none;
 }
+
+.fade {
+  @apply opacity-0;
+}
