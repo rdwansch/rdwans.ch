@@ -145,12 +145,21 @@ export default function Page() {
               scrollTop > 750 ? 'opacity-100 translate-x-0 translate-y-0' : 'translate-y-5 -translate-x-5 opacity-0'
             } mt-20 transition-all duration-700 md:flex gap-10 w-[80%] mx-auto`}
           >
-            <div className="bg-gray-400 max-w-full max-h-full h-[250px] w-[400px]" />
-            <p className="text-gray-300 md:w-2/3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, eligendi id debitis consequatur soluta
-              aspernatur amet numquam sequi perferendis incidunt illum odio sapiente sunt. Aperiam sapiente quidem mollitia
-              quod accusantium?
-            </p>
+            <div className="bg-gray-400 max-w-full max-h-full  -[400px]">
+              <img src="/images/project_virtual_card.png" alt="Virtual Card" width={400} height={250} />
+            </div>
+            <div className="md:w-2/3">
+              <Link
+                href={new URL('https://virtual-card-lemon.vercel.app')}
+                className="dark:text-gray-100 text-gray-900 text-xl font-bold"
+              >
+                Virtual Card
+              </Link>
+              <p className="dark:text-gray-300 text-gray-500 ">
+                Build with Next JS, Next-Auth, Tailwindcss. Using Credentials and Google OAuth to login or register. Hosted
+                on Vercel and PlanetScale
+              </p>
+            </div>
           </div>
 
           {/* Second Project */}
@@ -159,12 +168,20 @@ export default function Page() {
               scrollTop > 1500 ? 'opacity-100 translate-x-0 translate-y-0' : '-translate-y-10 opacity-0'
             } mt-20 transition-all duration-700 flex flex-col-reverse md:flex-row gap-10 ml-auto w-[80%] mx-auto md:mx-0`}
           >
-            <p className="text-gray-300 md:w-2/3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, eligendi id debitis consequatur soluta
-              aspernatur amet numquam sequi perferendis incidunt illum odio sapiente sunt. Aperiam sapiente quidem mollitia
-              quod accusantium?
-            </p>
-            <div className="bg-gray-400 w-[400px] h-[250px]" />
+            <div className="md:w-2/3">
+              <Link
+                href={new URL('https://github.com/rdwansch/video-games-store')}
+                className="dark:text-gray-100 text-gray-900 text-xl font-bold"
+              >
+                Video Games Store
+              </Link>
+              <p className="dark:text-gray-300 text-gray-500 ">
+                Using Public API to provide a data. Build with Next JS, SWR, Tailwindcss.
+              </p>
+            </div>
+            <div className="bg-gray-400 w-[400px]">
+              <img src="/images/project_game_store.png" alt="Game Store" width={400} height={250} />
+            </div>
           </div>
 
           {/* Third Project */}
@@ -173,12 +190,15 @@ export default function Page() {
               scrollTop > 750 ? 'opacity-100 translate-x-0 translate-y-0' : 'translate-y-5 -translate-x-5 opacity-0'
             } mt-20 transition-all duration-700 md:flex gap-10 w-[80%] mx-auto`}
           >
-            <div className="bg-gray-400 max-w-full max-h-full h-[250px] w-[400px]" />
-            <p className="text-gray-300 md:w-2/3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, eligendi id debitis consequatur soluta
-              aspernatur amet numquam sequi perferendis incidunt illum odio sapiente sunt. Aperiam sapiente quidem mollitia
-              quod accusantium?
-            </p>
+            <div className="bg-gray-400 max-w-full max-h-full w-[400px]">
+              <img src="/images/project_blog.png" alt="Virtual Card" width={400} height={250} />
+            </div>
+            <div className="md:w-2/3">
+              <Link href="/read" className="dark:text-gray-100 text-gray-900 text-xl font-bold">
+                Blog Posts
+              </Link>
+              <p className="dark:text-gray-300 text-gray-500 ">Blog post using Next JS, MDX, Tailwindcss.</p>
+            </div>
           </div>
         </div>
       </div>
