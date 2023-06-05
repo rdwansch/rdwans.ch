@@ -11,8 +11,6 @@ const preahvihear = Preahvihear({ weight: '400', preload: false });
 export default function Page() {
   const scrollTop = useScrollTop();
 
-  console.log(scrollTop);
-
   return (
     <div className="my-container min-h-[calc(2000px+100vh)]">
       {/* Hero Section */}
@@ -145,13 +143,14 @@ export default function Page() {
               scrollTop > 750 ? 'opacity-100 translate-x-0 translate-y-0' : 'translate-y-5 -translate-x-5 opacity-0'
             } mt-20 transition-all duration-700 md:flex gap-10 w-[80%] mx-auto`}
           >
-            <div className="bg-gray-400 max-w-full max-h-full  -[400px]">
+            <div className="bg-gray-400 max-w-full max-h-full ">
               <img src="/images/project_virtual_card.png" alt="Virtual Card" width={400} height={250} />
             </div>
             <div className="md:w-2/3">
               <Link
                 href={new URL('https://virtual-card-lemon.vercel.app')}
                 className="dark:text-gray-100 text-gray-900 text-xl font-bold"
+                target="_blank"
               >
                 Virtual Card
               </Link>
@@ -170,8 +169,9 @@ export default function Page() {
           >
             <div className="md:w-2/3">
               <Link
-                href={new URL('https://github.com/rdwansch/video-games-store')}
+                href={new URL('https://video-games-store.vercel.app/')}
                 className="dark:text-gray-100 text-gray-900 text-xl font-bold"
+                target="_blank"
               >
                 Video Games Store
               </Link>
