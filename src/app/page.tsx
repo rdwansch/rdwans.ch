@@ -15,19 +15,19 @@ export default function Home() {
   return (
     <div className="my-container">
       <div className="mt-36 max-w-2xl">
-        <h1 className="md:text-5xl font-semibold dark:text-white">
+        <h1 className="text-3xl md:text-5xl font-semibold dark:text-white">
           Hello <span className="text-gray-300 dark:text-gray-600">—</span>
         </h1>
 
         <div className="mt-10">
-          <p className="text-2xl text-gray-500 dark:text-gray-300">
+          <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-300">
             my name is <span className="font-semibold">Ridhwan R. Siddiq</span>. I write programs and articles to share my
             experiences about coding. My favourite topic is about frontend technologies especially React Ecosystems.
           </p>
           <br />
-          <p className="text-2xl text-gray-500 dark:text-gray-300">Let&apos;s get connected:</p>
+          <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-300">Let&apos;s get connected:</p>
 
-          <div className="flex gap-10 mt-2">
+          <div className="md:flex gap-10 mt-2">
             <Link href={new URL('https://github.com/rdwansch')} target="_blank" className="flex group">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
