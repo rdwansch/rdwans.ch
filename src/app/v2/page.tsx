@@ -2,6 +2,7 @@
 
 // eslint-disable-next-line camelcase
 import { Open_Sans, Preahvihear } from 'next/font/google';
+import Image from 'next/image';
 import Link from 'next/link';
 import useScrollTop from 'src/hooks/useScrollTop';
 
@@ -144,7 +145,7 @@ export default function Page() {
             } mt-20 transition-all duration-700 md:flex gap-10 w-[80%] mx-auto`}
           >
             <div className="bg-gray-400 max-w-full max-h-full ">
-              <img src="/images/project_virtual_card.png" alt="Virtual Card" width={400} height={250} />
+              <Image src="/images/project_virtual_card.png" alt="Virtual Card" width={400} height={250} />
             </div>
             <div className="md:w-2/3">
               <Link
@@ -180,7 +181,7 @@ export default function Page() {
               </p>
             </div>
             <div className="bg-gray-400 w-[400px]">
-              <img src="/images/project_game_store.png" alt="Game Store" width={400} height={250} />
+              <Image src="/images/project_game_store.png" alt="Game Store" width={400} height={250} />
             </div>
           </div>
 
@@ -191,7 +192,7 @@ export default function Page() {
             } mt-20 transition-all duration-700 md:flex gap-10 w-[80%] mx-auto`}
           >
             <div className="bg-gray-400 max-w-full max-h-full w-[400px]">
-              <img src="/images/project_blog.png" alt="Virtual Card" width={400} height={250} />
+              <Image src="/images/project_blog.png" alt="Virtual Card" width={400} height={250} />
             </div>
             <div className="md:w-2/3">
               <Link href="/read" className="dark:text-gray-100 text-gray-900 text-xl font-bold">
