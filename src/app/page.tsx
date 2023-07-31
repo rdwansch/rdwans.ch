@@ -25,7 +25,6 @@ export default function Home() {
             experiences about coding. My favourite topic is about frontend technologies especially React Ecosystems.
           </p>
           <br />
-          <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-300">Let&apos;s get connected:</p>
 
           <div className="md:flex gap-10 mt-2">
             <Link href={new URL('https://github.com/rdwansch')} target="_blank" className="flex group">
@@ -79,6 +78,11 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        <img
+          src="https://github.githubassets.com/images/mona-loading-default.gif"
+          alt="Your GIF Description"
+          className="w-32 mt-4"
+        />
       </div>
     </div>
   );
