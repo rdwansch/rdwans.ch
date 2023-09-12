@@ -1,4 +1,4 @@
-import { Roboto } from '@next/font/google';
+import { Poppins, Inter } from 'next/font/google';
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
@@ -13,7 +13,8 @@ type Props = {
   };
 };
 
-const roboto = Roboto({ weight: '700', preload: false });
+const inter = Inter({ preload: true, subsets: ['latin'] });
+const poppins = Poppins({ weight: ['800', '700', '600', '500', '400', '300'], preload: true, subsets: ['latin'] });
 export const dynamicParams = false; // fallback
 
 export default async function page(props: Props) {
@@ -28,7 +29,7 @@ export default async function page(props: Props) {
         <div>
           <h1
             className={
-              `${roboto.className} dark:text-gray-300 text-center text-3xl sm:text-4xl md:text-5xl text-gray-900 relative mt-10 ` +
+              `${inter.className} dark:text-gray-300 text-center text-3xl sm:text-4xl md:text-5xl text-gray-900 relative mt-10 ` +
               "after:content[''] after:absolute after:w-[200px] after:h-[180px] after:-bottom-20 after:left-32 after:right-0 after:mx-auto " +
               'after:rounded-full ' +
               "after:bg-cover after:bg-[url('/gradient.svg')]"
@@ -42,7 +43,7 @@ export default async function page(props: Props) {
           </span>
           <hr className="dark:border-gray-600 border-gray-300 mt-2" />
         </div>
-        <div className="my-5 dark:text-gray-300 text-gray-900 font-sans">
+        <div className={`${poppins.className} my-5 dark:text-gray-300 text-gray-900 font-sans`}>
           <MDXRemoteWrapper {...res.source} />
         </div>
 
@@ -84,5 +85,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title: res.data.title,
     keywords: res.data.tags,
     description: res.data.excerpt,
+    authors: 'Ridhwan R. Siddiq',
   };
 }

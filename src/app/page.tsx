@@ -1,17 +1,8 @@
-'use client';
-
 import Link from 'next/link';
-// import { Poppins } from '@next/font/google';
-
-import { useEffect } from 'react';
 
 // const poppins = Poppins({ weight: '400', subsets: ['latin'] });
 
 export default function Home() {
-  useEffect(() => {
-    document.getElementsByTagName('footer')[0].style.display = 'none';
-  }, []);
-
   return (
     <div className="my-container">
       <div className="mt-36 max-w-2xl">
@@ -27,7 +18,7 @@ export default function Home() {
           <br />
 
           <div className="md:flex gap-10 mt-2">
-            <Link href={new URL('https://github.com/rdwansch')} target="_blank" className="flex group">
+            <Link href="https://github.com/rdwansch" target="_blank" className="flex group">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={35}
@@ -43,7 +34,7 @@ export default function Home() {
                 Github
               </span>
             </Link>
-            <Link href={new URL('https://www.linkedin.com/in/ridhwansiddiq/')} target="_blank" className="flex group">
+            <Link href="https://www.linkedin.com/in/ridhwansiddiq/" target="_blank" className="flex group">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={35}
@@ -60,7 +51,7 @@ export default function Home() {
               </span>
             </Link>
 
-            <Link href={new URL('mailto:ridwanrasyid345@gmail.com')} target="_blank" className="flex group">
+            <Link href="mailto:ridwanrasyid345@gmail.com" target="_blank" className="flex group">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={35}

@@ -1,10 +1,10 @@
-import { Preahvihear, Inter } from '@next/font/google';
+import { Preahvihear, Inter } from 'next/font/google';
 import Link from 'next/link';
 import { getAllFrontmatter } from '~/helper/markdown';
 import { Post } from '~/types/Post.type';
 
-const preahvihear = Preahvihear({ weight: '400', preload: false });
-const inter = Inter({ preload: false });
+const preahvihear = Preahvihear({ weight: '400', preload: false, subsets: ['latin'] });
+const inter = Inter({ preload: true, subsets: ['latin'] });
 
 export default async function page() {
   const posts: Post[] = await getAllFrontmatter();

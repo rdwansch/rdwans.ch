@@ -27,7 +27,12 @@ Kita hanya perlu klik _new environment_ dan mengetikkan nama. Data akan tersimpa
 - Snap: `~/snap/mockoon/26/.config/mockoon/storage`
 - Mac: `~/Library/Application Support/mockoon/storage`
 
-<Image src="/images/mockoon.png" alt="Mockoon" width={900} height={0} />
+<Image
+  src="https://res.cloudinary.com/dokfezoco/image/upload/v1694527355/rdwansch/mockoon.png"
+  alt="Mockoon"
+  width={900}
+  height={0}
+/>
 
 Selanjutnya menambah HTTP Route baru mengisikan _path_ nya dan mulai menulis response di body nya dalam bentuk JSON. Kita bisa mengganti HTTP Status untuk simulasi ketika ada error dan sebagainya. Penggunaan yang sederhana bisa kita pelajari dalam 5 menit. [Getting Started](https://mockoon.com/tutorials/getting-started/). Di sini kita akan melihat fitur menarik.
 
@@ -42,11 +47,21 @@ password: 123
 
 Kita buat HTTP Route baru dengan url `/auth/login`. Status di isi dengan 200 - OK dan body sederana menampilkan pesan sukses.
 
-<Image src="/images/mockoon-success.png" alt="Mockoon" width={900} height={0} />
+<Image
+  src="https://res.cloudinary.com/dokfezoco/image/upload/v1694527355/rdwansch/mockoon-success.png"
+  alt="Mockoon"
+  width={900}
+  height={0}
+/>
 
 Setelah itu klik tombol tambah berwarna biru di sebelah `Response 1 (200)`. Pada response selanjutnya kita isikan HTTP Status 401 - Unauthorized dengan body menampilkan username atau password salah.
 
-<Image src="/images/mockoon-unauthorized.png" alt="Mockoon" width={900} height={0} />
+<Image
+  src="https://res.cloudinary.com/dokfezoco/image/upload/v1694527355/rdwansch/mockoon-unauthorized.png"
+  alt="Mockoon"
+  width={900}
+  height={0}
+/>
 
 Kita masuk ke tab `Rules [2]` lalu menuliskan Rules:
 
