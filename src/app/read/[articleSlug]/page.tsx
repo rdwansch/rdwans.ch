@@ -85,6 +85,5 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title: res.data.title,
     keywords: res.data.tags,
     description: res.data.excerpt,
-    authors: 'Ridhwan R. Siddiq',
   };
 }

@@ -37,6 +37,7 @@ export default function Nav() {
           <g id="SVGRepo_bgCarrier" strokeWidth={0} />
           <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
           <g id="SVGRepo_iconCarrier">
+            {/* eslint-disable-next-line react/no-danger */}
             <style type="text/css" dangerouslySetInnerHTML={{ __html: ' .st0{fill:none;} ' }} />{' '}
             <rect x={18} y={5} width={10} height={2} />{' '}
             <polygon points="10.6,5 4,5 4,7 9.4,7 18.4,27 28,27 28,25 19.6,25 " />{' '}
