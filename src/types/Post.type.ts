@@ -1,3 +1,5 @@
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 export type Post = {
   slug: string;
   readingTime: number;
@@ -9,7 +11,5 @@ export type Post = {
     tags: string[];
   };
   content?: string;
-  source: {
-    compiledSource: string;
-  };
+  source: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>;
 };

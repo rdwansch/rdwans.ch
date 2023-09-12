@@ -7,6 +7,7 @@ import readingTime from '~/helper/readingTime';
 import { Post } from '~/types/Post.type';
 import remarkGfm from 'remark-gfm';
 import rehypePrism from 'rehype-prism-plus';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 // Get all post with matter format
 export const getAllFrontmatter = (): Post[] => {
@@ -29,7 +30,7 @@ export const getAllFrontmatter = (): Post[] => {
           excerpt: data.excerpt,
           tags: data.tags,
         },
-        source: { compiledSource: '' },
+        source: {} as MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>,
         content,
       };
     })
